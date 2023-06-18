@@ -1,0 +1,66 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+
+.App {
+  width: 100%;
+}
+
+
+/* player 2 board */
+.Player2Board {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 30vh;
+  border-bottom: 1px solid;
+}
+
+.Board {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 39vh;
+  background-color: aquamarine;
+}
+
+.Board-Cards {
+  width: 50px;
+  height: 70px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  display: flex;
+  color: red;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.card-title-top {
+  display: flex;
+  margin-left: 3px;
+}
+
+.card-icon {
+  margin-left: 16px;
+
+}
+
+.card-title-bottom {
+  display: flex;
+  margin-left: 35px;
+}
+
+.Player1Board {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 30vh;
+  border-top: 1px solid;
+}
