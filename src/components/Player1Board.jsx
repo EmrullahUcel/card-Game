@@ -1,7 +1,17 @@
-import { BsSuitDiamond } from "react-icons/bs";
-import { useEffect, useState } from "react";
+const Player1Board = ({
+  randomHand,
+  randomCards,
+  randomplayer1Hand,
+  setRandomHand,
+  setRandomplayer1Hand,
+}) => {
+  const playedCardHandle = (card) => {
+    setRandomHand((prevState) => [...prevState, card]);
+    setRandomplayer1Hand((prevHand) =>
+      prevHand.filter((c) => c.title !== card.title)
+    );
+  };
 
-const Player1Board = ({ randomHand, randomCards, randomplayer1Hand }) => {
   return (
     <div className="Player1Board">
       {randomplayer1Hand.map((card) => {
@@ -10,6 +20,7 @@ const Player1Board = ({ randomHand, randomCards, randomplayer1Hand }) => {
             style={{ color: card.color }}
             key={card.title}
             className="Board-Cards"
+            onClick={() => playedCardHandle(card)}
           >
             <span className="card-title-top">{card.value}</span>
             <span className="card-icon">

@@ -21,16 +21,19 @@ function App() {
     setRandomplayer1Hand([...player1hand]);
     const player2hand = cards.splice(0, 4);
     setRandomplayer2Hand([...player2hand]);
+    console.log(shuffledCards);
   };
 
   return (
     <div className="App">
       <Player2Board randomplayer2Hand={randomplayer2Hand} />
       <button onClick={randomCards}>Dağıt</button>
-      <Board randomHand={randomHand} />
+      <Board randomHand={randomHand} setRandomHand={setRandomHand} />
       <Player1Board
         randomplayer1Hand={randomplayer1Hand}
         randomCards={randomCards}
+        setRandomHand={setRandomHand}
+        setRandomplayer1Hand={setRandomplayer1Hand}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BsSuitDiamond } from "react-icons/bs";
 
-const Board = ({ randomHand, randomCard }) => {
+const Board = ({ randomHand, randomCard, setRandomHand }) => {
   return (
     <div className="Board">
       {randomHand.map((card) => {
