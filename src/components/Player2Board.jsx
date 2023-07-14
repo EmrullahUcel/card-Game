@@ -7,11 +7,14 @@ const Player2Board = ({ randomplayer2Hand, randomCard }) => {
     <div className="Player2Board">
       {randomplayer2Hand.map((card) => {
         return (
-          <div key={card.title} className="Board-Cards">
+          <div
+            style={{ color: card.color }}
+            key={card.title}
+            className="Board-Cards"
+          >
             <span className="card-title-top">{card.value}</span>
             <span className="card-icon">
-              <BsSuitDiamond />
-              <div>{card.title}</div>
+              <div>{card.icon}</div>
             </span>
             <span className="card-title-bottom">{card.value}</span>
           </div>
