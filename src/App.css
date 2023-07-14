@@ -42,6 +42,16 @@ body {
   cursor: pointer;
 }
 
+/* .Board :nth-child(n+2)
+{
+  transition: 1s;
+  rotate: y 180deg;
+}
+.Board :nth-child(n+2)::before{
+  content: '';
+  background-color: red;
+} */
+
 .card-title-top {
   display: flex;
   margin-left: 3px;
