@@ -4,30 +4,35 @@ const Player1Board = ({
   randomplayer1Hand,
   setRandomHand,
   setRandomplayer1Hand,
+  setTurn,
+  turn,
 }) => {
   const playedCardHandle = (card) => {
     setRandomHand((prevState) => [...prevState, card]);
     setRandomplayer1Hand((prevHand) =>
       prevHand.filter((c) => c.title !== card.title)
     );
+    console.log(turn);
+    setTurn(false);
   };
 
   return (
     <div className="Player1Board">
       {randomplayer1Hand.map((card) => {
         return (
-          <div
+          <button
             style={{ color: card.color }}
             key={card.title}
             className="Board-Cards"
             onClick={() => playedCardHandle(card)}
+            disabled={turn ? false : true}
           >
             <span className="card-title-top">{card.value}</span>
             <span className="card-icon">
               <div>{card.icon}</div>
             </span>
             <span className="card-title-bottom">{card.value}</span>
-          </div>
+          </button>
         );
       })}
     </div>
