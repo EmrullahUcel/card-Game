@@ -14,6 +14,5 @@ function shuffle(array) {
   return shuffledArray;
 }
 
-// Kullanım örneği
 const shuffledCards = shuffle(CardsData);
 export default shuffledCards;

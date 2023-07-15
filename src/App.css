@@ -9,7 +9,6 @@ body {
   width: 100%;
 }
 
-/* player 2 board */
 .Player2Board {
   width: 100%;
   display: flex;
@@ -27,48 +26,46 @@ body {
   height: 38vh;
   background-color: aquamarine;
 }
-
-.Board-Cards {
-  width: 50px;
-  height: 70px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 5px;
-  display: flex;
-  color: red;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-/* .Board :nth-child(-n + 1) {
-  background-color: purple;
-}
-.Board :nth-child(n + 2)::before {
-  content: "";
-  background-color: red;
-} */
-
-.card-title-top {
-  display: flex;
-  margin-left: 3px;
-}
-
-.card-icon {
-  margin-left: 16px;
-}
-
-.card-title-bottom {
-  display: flex;
-  margin-left: 35px;
-}
-
 .Player1Board {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 29vh;
-  border-top: 1px solid;
+  border-bottom: 1px solid;
+  align-items: center;
+}
+.Board-Cards {
+  width: 50px;
+  height: 70px;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  color: red;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.Board-Cards .card-title-top {
+  margin-left: 2px;
+  width: 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+.Board-Cards .card-title-bottom {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 4px;
+}
+
+.Player1Board .card-title-bottom,
+.Player2Board .card-title-bottom {
+  margin-right: 4px;
+}
+.Player1Board .card-title-top,
+.Player2Board .card-title-top {
+  margin-left: 4px;
 }

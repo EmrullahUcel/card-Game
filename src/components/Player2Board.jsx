@@ -3,11 +3,11 @@ import { BsSuitDiamond } from "react-icons/bs";
 
 const Player2Board = ({
   randomplayer2Hand,
-  randomCard,
   setRandomplayer2Hand,
   setRandomHand,
   setTurn,
   turn,
+  setTakeCard,
 }) => {
   const playedCardHandle = (card) => {
     setRandomHand((prevState) => [...prevState, card]);
@@ -15,6 +15,7 @@ const Player2Board = ({
       prevHand.filter((c) => c.title !== card.title)
     );
     setTurn(true);
+    setTakeCard(card);
   };
 
   return (

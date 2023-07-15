@@ -6,14 +6,16 @@ const Player1Board = ({
   setRandomplayer1Hand,
   setTurn,
   turn,
+  setTakeCard,
 }) => {
   const playedCardHandle = (card) => {
     setRandomHand((prevState) => [...prevState, card]);
     setRandomplayer1Hand((prevHand) =>
       prevHand.filter((c) => c.title !== card.title)
     );
-    console.log(turn);
+
     setTurn(false);
+    setTakeCard(card);
   };
 
   return (
