@@ -1,16 +1,16 @@
 import React from "react";
-import { BsSuitDiamond } from "react-icons/bs";
 
 const Player2Board = ({
   randomplayer2Hand,
   setRandomplayer2Hand,
-  setRandomHand,
+  setBoardHand,
   setTurn,
   turn,
   setTakeCard,
+  player2winCards,
 }) => {
   const playedCardHandle = (card) => {
-    setRandomHand((prevState) => [...prevState, card]);
+    setBoardHand((prevState) => [...prevState, card]);
     setRandomplayer2Hand((prevHand) =>
       prevHand.filter((c) => c.title !== card.title)
     );
@@ -37,6 +37,25 @@ const Player2Board = ({
           </button>
         );
       })}
+      {
+        <div>
+          {player2winCards.map((card) => {
+            return (
+              <div
+                style={{ color: card.color }}
+                key={card.title}
+                className="Board-Cards"
+              >
+                <span className="card-title-top">{card.value}</span>
+                <span className="card-icon">
+                  <div>{card.icon}</div>
+                </span>
+                <span className="card-title-bottom">{card.value}</span>
+              </div>
+            );
+          })}
+        </div>
+      }
     </div>
   );
 };

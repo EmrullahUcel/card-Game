@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { BsSuitDiamond } from "react-icons/bs";
-
-const Board = ({ randomHand, randomCard, setRandomHand }) => {
+const Board = ({ boardHand }) => {
   return (
     <div className="Board">
-      {randomHand.map((card) => {
+      {boardHand.map((card) => {
         return (
           <div
             style={{ color: card.color }}
