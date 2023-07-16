@@ -11,40 +11,57 @@ function App() {
   const [randomplayer1Hand, setRandomplayer1Hand] = useState([]);
   const [randomplayer2Hand, setRandomplayer2Hand] = useState([]);
   const [turn, setTurn] = useState(true);
-  const [takeCard, setTakeCard] = useState([]);
+  const [takeCard, setTakeCard] = useState([]); // oyunculardan gelen kartları tutan state
   const [winCards, setWinCards] = useState([]);
 
   useEffect(() => {
+    //4 tane kartı ortaya koyuyoruz
+    firstCards();
+  }, []);
+  const firstCards = () => {
+    //4 tane kartı ortaya koyuyoruz
     const randomCard = shuffledCards.splice(0, 4);
     setRandomHand(randomCard);
     setCards([...shuffledCards]);
-  }, []);
+  };
 
   const lastCard = () => {
+    // bu if bloğunda kazanma koşullarını gösteriyoruz
+    // oyuncudan gelen kartla yerdeki kartların sonundakiyle eşleşip eşleşmediğini kontrol ediyoruz
     if (
-      randomHand.length > 1 &&
-      takeCard.value === randomHand[randomHand.length - 2].value
+      (randomHand.length > 1 &&
+        takeCard.value === randomHand[randomHand.length - 2].value) ||
+      (randomHand.length > 1 && randomHand[randomHand.length - 1].value === "J")
     ) {
-      console.log("aldın");
+      if (
+        randomHand.length > 1 &&
+        randomHand.length < 3 &&
+        takeCard.value === randomHand[0].value
+      ) {
+        alert("pişti");
+        setWinCards([...randomHand.splice(0, randomHand.length)]);
+      }
       setWinCards([...randomHand.splice(0, randomHand.length)]);
-      console.log(winCards);
-    } else {
-      console.log("alamadın");
     }
-    console.log(winCards);
   };
 
   useEffect(() => {
+    // tur her değiştiğinde lastCard fonksiyonu ile kazanıp kazanmadığını kontrol ediyoruz
     lastCard();
   }, [turn]);
 
   const randomCards = () => {
     const player1hand = cards.splice(0, 4);
     setRandomplayer1Hand([...player1hand]);
+    // desteden 1.oyuncuya 4 kart veriyoruz
+
     const player2hand = cards.splice(0, 4);
     setRandomplayer2Hand([...player2hand]);
+    // desteden 2.oyuncuya 4 kart veriyoruz
     if (cards.length < 1) {
       alert("oyun bitti");
+      window.location.reload(); // oyun bittiğinde sayfayı yeniliyoruz
+      firstCards(); // oyunu tekrar başlatmak için tekrar ilk kartları dağıtıyoruz ve oyun tekrardan başlıyor
     }
   };
   if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
