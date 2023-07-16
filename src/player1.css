@@ -1,0 +1,33 @@
+.Player1Board {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 29vh;
+  align-items: center;
+  margin-left: 75px;
+}
+.player1Hand {
+  display: flex;
+}
+.player1Hand .cards:nth-child(-n + 1) {
+  transform: rotate(-25deg);
+  margin-right: -40px;
+  z-index: 1;
+}
+.player1Hand .cards:nth-child(2) {
+  transform: rotate(-10deg);
+  margin-top: -5px;
+  z-index: 2;
+}
+.player1Hand .cards:nth-child(3) {
+  transform: rotate(10deg);
+  margin-top: -5px;
+  margin-left: -20px;
+  z-index: 3;
+}
+.player1Hand .cards:nth-child(4) {
+  transform: rotate(25deg);
+  margin-top: 8px;
+  margin-left: -25px;
+  z-index: 4;
+}

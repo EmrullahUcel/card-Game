@@ -3,11 +3,7 @@ const Board = ({ boardHand }) => {
     <div className="Board">
       {boardHand.map((card) => {
         return (
-          <div
-            style={{ color: card.color }}
-            key={card.title}
-            className="Board-Cards"
-          >
+          <div style={{ color: card.color }} key={card.title} className="cards">
             <span className="card-title-top">{card.value}</span>
             <span className="card-icon">{card.icon}</span>
             <span className="card-title-bottom">{card.value}</span>

@@ -1,3 +1,5 @@
+import "../player1.css";
+
 const Player1Board = ({
   randomplayer1Hand,
   setBoardHand,
@@ -16,33 +18,15 @@ const Player1Board = ({
     setTurn(false);
     setTakeCard(card);
   };
-
   return (
     <div className="Player1Board">
-      {randomplayer1Hand.map((card) => {
-        return (
-          <button
-            style={{ color: card.color }}
-            key={card.title}
-            className="Board-Cards"
-            onClick={() => playedCardHandle(card)}
-            disabled={turn ? false : true}
-          >
-            <span className="card-title-top">{card.value}</span>
-            <span className="card-icon">
-              <div>{card.icon}</div>
-            </span>
-            <span className="card-title-bottom">{card.value}</span>
-          </button>
-        );
-      })}
-      <div>
+      <div className="playersWinBoard">
         {player1winCards.map((card) => {
           return (
             <div
               style={{ color: card.color }}
               key={card.title}
-              className="Board-Cards"
+              className="cards"
             >
               <span className="card-title-top">{card.value}</span>
               <span className="card-icon">
@@ -52,6 +36,29 @@ const Player1Board = ({
             </div>
           );
         })}
+      </div>
+      <div className="player1Hand">
+        {randomplayer1Hand.map((card) => {
+          return (
+            <button
+              style={{ color: card.color }}
+              key={card.title}
+              className="cards"
+              onClick={() => playedCardHandle(card)}
+              disabled={turn ? false : true}
+            >
+              <span className="card-title-top">{card.value}</span>
+              <span className="card-icon">
+                <div>{card.icon}</div>
+              </span>
+              <span className="card-title-bottom">{card.value}</span>
+            </button>
+          );
+        })}
+      </div>
+      <div className="score-Board">
+        <h5>Toplam kazanılan kart</h5>
+        <p>{player1winCards.length}</p>
       </div>
     </div>
   );
