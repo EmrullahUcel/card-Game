@@ -12,15 +12,6 @@ const Player1Board = ({
     }
   };
 
-  // const playedCardHandle = (card) => {
-  //   setBoardHand((prevState) => [...prevState, card]);
-  //   setRandomplayer1Hand((prevHand) =>
-  //     prevHand.filter((c) => c.title !== card.title)
-  //   );
-  //   setTurn(false);
-  //   setTakeCard(card);
-  // };
-
   return (
     <div className="Player1Board">
       <div className="playersWinBoard">
