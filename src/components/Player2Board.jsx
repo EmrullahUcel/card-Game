@@ -1,4 +1,4 @@
-import "../player2.css";
+import "../style/player2.css";
 
 const Player2Board = ({
   randomplayer2Hand,
@@ -29,7 +29,7 @@ const Player2Board = ({
           return (
             <button
               style={{ color: card.color }}
-              key={card.title}
+              key={card.id}
               className="cards"
               onClick={() => playedCardHandle(card)}
               disabled={turn ? true : false}

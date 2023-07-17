@@ -3,10 +3,11 @@ import Player1Board from "./components/Player1Board";
 import Board from "./components/Board";
 import React, { useState, useEffect } from "react";
 import shuffledCards from "./components/Cards/ShuffledCards";
-import "./App.css";
+import "./style/App.css";
+const startDeck = [...shuffledCards];
 
 function App() {
-  const [cards, setCards] = useState(shuffledCards); // Karıştırılmış desteyi tutan state
+  const [deck, setDeck] = useState(shuffledCards); // Karıştırılmış desteyi tutan state
   const [boardHand, setBoardHand] = useState([]); // Yerdeki kartları tutan ve güncelleyen state
   const [randomplayer1Hand, setRandomplayer1Hand] = useState([]); // 1. oyuncuya dağıtılan kartları tutan state
   const [randomplayer2Hand, setRandomplayer2Hand] = useState([]); // 2. oyuncuya dağıtılan kartları tutan state
@@ -14,16 +15,38 @@ function App() {
   const [takeCard, setTakeCard] = useState([]); // Oyunculardan gelen kartları tutan state
   const [player1winCards, setPlayer1WinCards] = useState([]); // 1. oyuncunun kazandığı kartları tutan state
   const [player2winCards, setPlayer2WinCards] = useState([]); // 2. oyuncunun kazandığı kartları tutan state
+  const [count, setCount] = useState(0);
 
+  const firstCards = () => {
+    const randomCard = deck.splice(0, 4);
+    setBoardHand(randomCard); // 4 kartı yerdeki kartlara atar
+    setDeck([...deck]); // Destede kalan kartları günceller
+  };
   useEffect(() => {
     firstCards(); // İlk kartları dağıtma işlemini gerçekleştirir
   }, []);
-
-  const firstCards = () => {
-    const randomCard = cards.splice(0, 4);
-    setBoardHand(randomCard); // 4 kartı yerdeki kartlara atar
-    setCards([...cards]); // Destede kalan kartları günceller
+  const restartGame = () => {
+    setDeck([...startDeck]);
+    setBoardHand([]);
+    setRandomplayer1Hand([]);
+    setRandomplayer2Hand([]);
+    setTurn(true);
+    setTakeCard([]);
+    setPlayer1WinCards([]);
+    setPlayer2WinCards([]);
+    setCount(0);
   };
+
+  const randomCards = () => {
+    const player1hand = deck.splice(0, 4);
+    setRandomplayer1Hand(player1hand); // Desteden 1. oyuncuya 4 kart verir
+    const player2hand = deck.splice(0, 4);
+    setRandomplayer2Hand(player2hand); // Desteden 2. oyuncuya 4 kart verir
+    setCount(count + 1);
+  };
+  if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
+    randomCards(); // Oyuncuların elinde kart kalmadığında kartları tekrar dağıtır
+  }
 
   const lastCard = () => {
     // bu if bloğunda kazanma koşullarını belirliyoruz
@@ -58,31 +81,18 @@ function App() {
       }
     }
   };
+  lastCard();
 
   useEffect(() => {
-    lastCard(); // Tur değiştikten sonra kazanma koşullarını kontrol eder
-  }, [turn]);
-
-  const randomCards = () => {
-    const player1hand = cards.splice(0, 4);
-    setRandomplayer1Hand(player1hand); // Desteden 1. oyuncuya 4 kart verir
-
-    const player2hand = cards.splice(0, 4);
-    setRandomplayer2Hand(player2hand); // Desteden 2. oyuncuya 4 kart verir
-
-    if (cards.length < 1) {
-      alert("oyun bitti");
-      player1winCards.length > player2winCards.length
-        ? alert("1.oyuncu kazandı")
-        : alert("2.oyuncu kazandı");
-      window.location.reload();
-      firstCards();
+    if (
+      randomplayer1Hand.length < 1 &&
+      randomplayer2Hand < 1 &&
+      deck.length < 1
+    ) {
+      console.log(" oyun bitti");
+      restartGame();
     }
-  };
-
-  if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
-    randomCards(); // Oyuncuların elinde kart kalmadığında kartları tekrar dağıtır
-  }
+  }, [turn]);
 
   return (
     <div className="App">
@@ -96,6 +106,7 @@ function App() {
         player2winCards={player2winCards}
         boardHand={boardHand}
       />
+      <p>{count}.Tur</p>
       <Board
         boardHand={boardHand}
         setBoardHand={setBoardHand}

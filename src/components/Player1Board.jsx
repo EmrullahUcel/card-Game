@@ -1,4 +1,4 @@
-import "../player1.css";
+import "../style/player1.css";
 
 const Player1Board = ({
   randomplayer1Hand,
@@ -14,20 +14,16 @@ const Player1Board = ({
     setRandomplayer1Hand((prevHand) =>
       prevHand.filter((c) => c.title !== card.title)
     );
-
     setTurn(false);
     setTakeCard(card);
   };
+
   return (
     <div className="Player1Board">
       <div className="playersWinBoard">
         {player1winCards.map((card) => {
           return (
-            <div
-              style={{ color: card.color }}
-              key={card.title}
-              className="cards"
-            >
+            <div style={{ color: card.color }} key={card.id} className="cards">
               <span className="card-title-top">{card.value}</span>
               <span className="card-icon">
                 <div>{card.icon}</div>
@@ -39,11 +35,12 @@ const Player1Board = ({
       </div>
       <div className="player1Hand">
         {randomplayer1Hand.map((card) => {
+          const cardClassName = `cards ${card.color.toLowerCase()}Shadow`;
           return (
             <button
               style={{ color: card.color }}
               key={card.title}
-              className="cards"
+              className={cardClassName}
               onClick={() => playedCardHandle(card)}
               disabled={turn ? false : true}
             >
