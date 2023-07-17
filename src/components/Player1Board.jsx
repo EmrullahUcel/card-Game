@@ -2,21 +2,24 @@ import "../style/player1.css";
 
 const Player1Board = ({
   randomplayer1Hand,
-  setBoardHand,
-  setRandomplayer1Hand,
-  setTurn,
   turn,
-  setTakeCard,
   player1winCards,
+  onCardSelected,
 }) => {
-  const playedCardHandle = (card) => {
-    setBoardHand((prevState) => [...prevState, card]);
-    setRandomplayer1Hand((prevHand) =>
-      prevHand.filter((c) => c.title !== card.title)
-    );
-    setTurn(false);
-    setTakeCard(card);
+  const handleCardSelected = (card) => {
+    if (onCardSelected) {
+      onCardSelected(card);
+    }
   };
+
+  // const playedCardHandle = (card) => {
+  //   setBoardHand((prevState) => [...prevState, card]);
+  //   setRandomplayer1Hand((prevHand) =>
+  //     prevHand.filter((c) => c.title !== card.title)
+  //   );
+  //   setTurn(false);
+  //   setTakeCard(card);
+  // };
 
   return (
     <div className="Player1Board">
@@ -41,7 +44,7 @@ const Player1Board = ({
               style={{ color: card.color }}
               key={card.title}
               className={cardClassName}
-              onClick={() => playedCardHandle(card)}
+              onClick={() => handleCardSelected(card)}
               disabled={turn ? false : true}
             >
               <span className="card-title-top">{card.value}</span>

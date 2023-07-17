@@ -25,16 +25,32 @@ function App() {
   useEffect(() => {
     firstCards(); // İlk kartları dağıtma işlemini gerçekleştirir
   }, []);
-  const restartGame = () => {
-    setDeck([...startDeck]);
-    setBoardHand([]);
-    setRandomplayer1Hand([]);
-    setRandomplayer2Hand([]);
+  // const restartGame = () => {
+  //   setDeck([...startDeck]);
+  //   setBoardHand([]);
+  //   setRandomplayer1Hand([]);
+  //   setRandomplayer2Hand([]);
+  //   setTurn(true);
+  //   setTakeCard([]);
+  //   setPlayer1WinCards([]);
+  //   setPlayer2WinCards([]);
+  //   setCount(0);
+  // };
+  const player1CardHandle = (card) => {
+    setBoardHand((prevState) => [...prevState, card]);
+    setRandomplayer1Hand((prevHand) =>
+      prevHand.filter((c) => c.title !== card.title)
+    );
+    setTurn(false);
+    setTakeCard(card);
+  };
+  const player2CardHandle = (card) => {
+    setBoardHand((prevState) => [...prevState, card]);
+    setRandomplayer2Hand((prevHand) =>
+      prevHand.filter((c) => c.title !== card.title)
+    );
     setTurn(true);
-    setTakeCard([]);
-    setPlayer1WinCards([]);
-    setPlayer2WinCards([]);
-    setCount(0);
+    setTakeCard(card);
   };
 
   const randomCards = () => {
@@ -84,27 +100,31 @@ function App() {
   lastCard();
 
   useEffect(() => {
+    console.log(randomplayer1Hand, randomplayer2Hand, deck);
     if (
       randomplayer1Hand.length < 1 &&
-      randomplayer2Hand < 1 &&
+      randomplayer2Hand.length < 1 &&
       deck.length < 1
     ) {
-      console.log(" oyun bitti");
-      restartGame();
+      setDeck([...startDeck]);
+      setBoardHand([]);
+      setRandomplayer1Hand([]);
+      setRandomplayer2Hand([]);
+      setTurn(true);
+      setTakeCard([]);
+      setPlayer1WinCards([]);
+      setPlayer2WinCards([]);
+      setCount(0);
     }
   }, [turn]);
 
   return (
     <div className="App">
       <Player2Board
-        randomplayer2Hand={randomplayer2Hand}
-        setRandomplayer2Hand={setRandomplayer2Hand}
-        setBoardHand={setBoardHand}
+        onCardSelected={(card) => player2CardHandle(card)}
+        randomplayer2Hand={randomplayer1Hand}
         turn={turn}
-        setTurn={setTurn}
-        setTakeCard={setTakeCard}
         player2winCards={player2winCards}
-        boardHand={boardHand}
       />
       <p>{count}.Tur</p>
       <Board
@@ -113,13 +133,9 @@ function App() {
         flipCards={firstCards}
       />
       <Player1Board
+        onCardSelected={(card) => player1CardHandle(card)}
         randomplayer1Hand={randomplayer1Hand}
-        randomCards={randomCards}
-        setBoardHand={setBoardHand}
-        setRandomplayer1Hand={setRandomplayer1Hand}
-        setTurn={setTurn}
         turn={turn}
-        setTakeCard={setTakeCard}
         player1winCards={player1winCards}
       />
     </div>

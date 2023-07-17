@@ -2,21 +2,24 @@ import "../style/player2.css";
 
 const Player2Board = ({
   randomplayer2Hand,
-  setRandomplayer2Hand,
-  setBoardHand,
-  setTurn,
   turn,
-  setTakeCard,
   player2winCards,
+  onCardSelected,
 }) => {
-  const playedCardHandle = (card) => {
-    setBoardHand((prevState) => [...prevState, card]);
-    setRandomplayer2Hand((prevHand) =>
-      prevHand.filter((c) => c.title !== card.title)
-    );
-    setTurn(true);
-    setTakeCard(card);
+  const handleCardSelected = (card) => {
+    if (onCardSelected) {
+      onCardSelected(card);
+    }
   };
+
+  // const playedCardHandle = (card) => {
+  //   setBoardHand((prevState) => [...prevState, card]);
+  //   setRandomplayer2Hand((prevHand) =>
+  //     prevHand.filter((c) => c.title !== card.title)
+  //   );
+  //   setTurn(true);
+  //   setTakeCard(card);
+  // };
 
   return (
     <div className="Player2Board">
@@ -31,7 +34,7 @@ const Player2Board = ({
               style={{ color: card.color }}
               key={card.id}
               className="cards"
-              onClick={() => playedCardHandle(card)}
+              onClick={() => handleCardSelected(card)}
               disabled={turn ? true : false}
             >
               <div className="content">
