@@ -1,4 +1,5 @@
 const Board = ({ boardHand }) => {
+  console.log(boardHand); // card nesnelerini konsola yazdır
   return (
     <div className="Board">
       {boardHand.map((card) => {

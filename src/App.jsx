@@ -41,23 +41,6 @@ function App() {
   //   window.location.reload();
   // };
 
-  const player1CardHandle = (card) => {
-    setBoardHand((prevState) => [...prevState, card]);
-    setRandomplayer1Hand((prevHand) =>
-      prevHand.filter((c) => c.title !== card.title)
-    );
-    setTurn(false);
-    setTakeCard(card);
-  };
-  const player2CardHandle = (card) => {
-    setBoardHand((prevState) => [...prevState, card]);
-    setRandomplayer2Hand((prevHand) =>
-      prevHand.filter((c) => c.title !== card.title)
-    );
-    setTurn(true);
-    setTakeCard(card);
-  };
-
   const randomCards = () => {
     const player1hand = deck.splice(0, 4);
     setRandomplayer1Hand(player1hand); // Desteden 1. oyuncuya 4 kart verir
@@ -92,14 +75,14 @@ function App() {
     // bu if bloğunda kazanma koşullarını belirliyoruz
     if (
       (boardHand.length > 1 &&
-        takeCard.value === boardHand[boardHand.length - 2].value) ||
-      (boardHand.length > 1 && boardHand[boardHand.length - 1].value === "J")
+        takeCard?.value === boardHand[boardHand.length - 2]?.value) ||
+      (boardHand.length > 1 && boardHand[boardHand.length - 1]?.value === "J")
       // oyuncudan gelen kartla yerdeki kartların sonundakiyle eşleşip eşleşmediğini kontrol ediyoruz
     ) {
       if (
         boardHand.length > 1 &&
         boardHand.length < 3 &&
-        takeCard.value === boardHand[0].value
+        takeCard?.value === boardHand[0]?.value
         //eğer yerde hiç kart yoksa oyuncudan gelen kartla yerdeki son kartın eşleşip eşleşmediğini kontrol ediyoruz
         //--bu sayede pişti durumuna bakıyoruz
       ) {
@@ -125,6 +108,55 @@ function App() {
       }
     }
   };
+
+  const player1CardHandle = (card) => {
+    setBoardHand((prevState) => [...prevState, card]);
+    setRandomplayer1Hand((prevHand) =>
+      prevHand.filter((c) => c.title !== card.title)
+    );
+    setTurn(false);
+    setTakeCard(card);
+  };
+
+  const player2CardHandle = (card) => {
+    const boardLastCard = boardHand[boardHand.length - 1];
+    const findCard = randomplayer2Hand.find(
+      (c) => c?.value === boardLastCard?.value
+    );
+
+    if (findCard) {
+      setTimeout(() => {
+        setBoardHand((prevBoardHand) => [...prevBoardHand, findCard]);
+        setRandomplayer2Hand((prevRandomplayer2Hand) =>
+          prevRandomplayer2Hand.filter((c) => c?.title !== findCard?.title)
+        );
+        setTakeCard(findCard);
+        setTurn(true);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        const randomCardIndex = Math.floor(
+          Math.random() * (randomplayer2Hand.length - 1)
+        );
+        const randomPlayCard = randomplayer2Hand[randomCardIndex];
+
+        setBoardHand((prevBoardHand) => [...prevBoardHand, randomPlayCard]);
+        setRandomplayer2Hand((prevRandomplayer2Hand) =>
+          prevRandomplayer2Hand.filter(
+            (card) => card?.title !== randomPlayCard?.title
+          )
+        );
+        setTakeCard(randomPlayCard);
+        setTurn(true);
+      }, 500);
+    }
+  };
+
+  useEffect(() => {
+    if (!turn) {
+      player2CardHandle();
+    }
+  }, [turn]);
 
   return (
     <div className="App">

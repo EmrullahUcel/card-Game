@@ -11,7 +11,6 @@ const Player1Board = ({
       onCardSelected(card);
     }
   };
-
   return (
     <div className="Player1Board">
       <div className="playersWinBoard">
