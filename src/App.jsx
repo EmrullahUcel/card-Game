@@ -4,6 +4,8 @@ import Board from "./components/Board";
 import React, { useState, useEffect } from "react";
 import shuffledCards from "./components/Cards/ShuffledCards";
 import saplak from "./soundEffect/saplak.mp3";
+import cardSound from "./soundEffect/cardSound.mp3";
+import takingCard from "./soundEffect/takingCards.mp3";
 import "./style/App.css";
 import "./style/phone.css";
 
@@ -46,6 +48,12 @@ function App() {
   const song = () => {
     new Audio(saplak).play();
   };
+  const playCard = () => {
+    new Audio(cardSound).play();
+  };
+  const takingCards = () => {
+    new Audio(takingCard).play();
+  };
 
   const randomCards = () => {
     const player1hand = deck.splice(0, 4);
@@ -84,10 +92,12 @@ function App() {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer1WinCards([...player1winCards, ...removedCards]);
         setDeck([...deck]);
+        takingCards();
       } else {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer2WinCards([...player2winCards, ...removedCards]);
         setDeck([...deck]);
+        takingCards();
       }
   };
   const pisti = () => {
@@ -103,10 +113,12 @@ function App() {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer1WinCards([...player1winCards, ...removedCards]);
         setDeck([...deck]);
+        takingCards();
       } else {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer2WinCards([...player2winCards, ...removedCards]);
         setDeck([...deck]);
+        takingCards();
       }
     }
   };
@@ -118,6 +130,7 @@ function App() {
     );
     setTurn(false);
     setTakeCard(card);
+    playCard();
   };
 
   const player2CardHandle = (card) => {
@@ -133,6 +146,7 @@ function App() {
         );
         setTakeCard(findCard);
         setTurn(true);
+        playCard();
       }, 750);
     } else {
       setTimeout(() => {
@@ -149,6 +163,7 @@ function App() {
         );
         setTakeCard(randomPlayCard);
         setTurn(true);
+        playCard();
       }, 750);
     }
   };
@@ -178,7 +193,6 @@ function App() {
         turn={turn}
         player2winCards={player2winCards}
       />
-
       <Board
         boardHand={boardHand}
         setBoardHand={setBoardHand}
