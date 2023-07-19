@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  height: 29vh;
+  height: 26vh;
   align-items: center;
   margin-right: 90px;
 }
@@ -50,4 +50,13 @@
 .player2Hand .card-title-top,
 .player2Hand .card-icon {
   color: black;
+}
+.player2-score-Board {
+  font-size: larger;
+  font-weight: bold;
+  color: white;
+}
+.player2winBoard .cards {
+  position: absolute;
+  margin-top: -30px;
 }

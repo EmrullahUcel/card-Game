@@ -21,7 +21,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 38vh;
+  height: 35vh;
 }
 
 .cards:hover {
@@ -42,7 +42,7 @@ body {
   margin-left: 4px;
 }
 
-.playersWinBoard {
+.player2WinBoard {
   margin-top: -70px;
 }
 .cards {
@@ -112,9 +112,13 @@ body {
   font-weight: bold;
   color: white;
 }
-.player2-score-Board {
-  width: 50px;
-  font-size: larger;
-  font-weight: bold;
+
+.player1WinBoard {
+  margin-bottom: 40px;
+}
+.score-board {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   color: white;
 }

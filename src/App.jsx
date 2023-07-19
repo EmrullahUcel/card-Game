@@ -60,8 +60,10 @@ function App() {
     ) {
       alert("oyun bitti");
       player1winCards.length > player2winCards.length
-        ? alert("player 1 kazandı")
-        : alert("player 2 kazandı");
+        ? alert("Sen kazandın")
+        : alert(
+            "Yazıklar olsun 30 satır koddan yazılmış bir BOT'a yenildin :D"
+          );
       window.location.reload();
     }
   };
@@ -118,7 +120,6 @@ function App() {
     const findCard = randomplayer2Hand.find(
       (c) => c?.value === boardLastCard?.value
     );
-
     if (findCard) {
       setTimeout(() => {
         setBoardHand((prevBoardHand) => [...prevBoardHand, findCard]);
@@ -127,7 +128,7 @@ function App() {
         );
         setTakeCard(findCard);
         setTurn(true);
-      }, 350);
+      }, 750);
     } else {
       setTimeout(() => {
         const randomCardIndex = Math.floor(
@@ -143,7 +144,7 @@ function App() {
         );
         setTakeCard(randomPlayCard);
         setTurn(true);
-      }, 350);
+      }, 750);
     }
   };
   useEffect(() => {}, [turn]);
@@ -169,6 +170,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="score-board">
+        <h4 className="score-board-table">Puanın : {player1winCards.length}</h4>
+        <h4 className="score-board-table">
+          Rakibin Puanı :{player2winCards.length}{" "}
+        </h4>
+      </div>
       <Player2Board
         onCardSelected={(card) => player2CardHandle(card)}
         randomplayer2Hand={randomplayer2Hand}

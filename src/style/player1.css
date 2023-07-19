@@ -33,4 +33,5 @@
 }
 .player1WinBoard .cards {
   position: absolute;
+  margin-left: -15px;
 }

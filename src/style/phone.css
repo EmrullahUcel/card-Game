@@ -125,7 +125,13 @@
     margin-left: -20px;
   }
   .player2winBoard {
-    margin-right: -45px;
+    margin-right: -15px;
+  }
+  .player2-score-Board {
+    width: 50px;
+    font-size: larger;
+    font-weight: bold;
+    color: white;
   }
   .player1Hand .cards:nth-child(-n + 1) {
     transform: rotate(-25deg);

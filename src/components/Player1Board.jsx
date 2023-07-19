@@ -46,13 +46,7 @@ const Player1Board = ({
           );
         })}
       </div>
-      <div className="score-Board">
-        <h6>
-          Toplam kazanılan kart :
-          <br />
-          {player1winCards.length}
-        </h6>
-      </div>
+      <div className="score-Board"></div>
     </div>
   );
 };

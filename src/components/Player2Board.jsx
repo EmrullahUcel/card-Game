@@ -22,13 +22,7 @@ const Player2Board = ({
 
   return (
     <div className="Player2Board">
-      <div className="player2-score-Board">
-        <h6>
-          Toplam kazanılan kart :
-          <br />
-          {player2winCards.length}
-        </h6>
-      </div>
+      <div className="player2-score-Board"></div>
       <div className="player2Hand back">
         {randomplayer2Hand.map((card) => {
           return (
@@ -47,7 +41,7 @@ const Player2Board = ({
         })}
       </div>
       {
-        <div className="playersWinBoard player2winBoard">
+        <div className="player2winBoard">
           {player2winCards.map((card) => {
             return (
               <div
