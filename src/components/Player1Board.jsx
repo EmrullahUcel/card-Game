@@ -13,7 +13,7 @@ const Player1Board = ({
   };
   return (
     <div className="Player1Board">
-      <div className="playersWinBoard">
+      <div className="player1WinBoard">
         {player1winCards.map((card) => {
           return (
             <div style={{ color: card.color }} key={card.id} className="cards">
@@ -47,8 +47,11 @@ const Player1Board = ({
         })}
       </div>
       <div className="score-Board">
-        <h5>Toplam kazanılan kart</h5>
-        <p>{player1winCards.length}</p>
+        <h6>
+          Toplam kazanılan kart :
+          <br />
+          {player1winCards.length}
+        </h6>
       </div>
     </div>
   );

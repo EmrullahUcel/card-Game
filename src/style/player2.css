@@ -10,7 +10,7 @@
   display: flex;
 }
 
-.player2Hand .cards {
+/* .player2Hand .cards {
   perspective: 500px;
 }
 .player2Hand .cards .content {
@@ -35,4 +35,19 @@
   background: #03446a;
   color: white;
   transform: rotateY(180deg);
+} */
+.player2Hand {
+  margin-left: 60px;
+}
+.player2Hand .cards {
+  margin-left: -60px;
+  border: 1px solid white;
+}
+.player2Hand .cards {
+  background-color: black;
+}
+.player2Hand .card-title-bottom,
+.player2Hand .card-title-top,
+.player2Hand .card-icon {
+  color: black;
 }

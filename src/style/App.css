@@ -22,7 +22,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 38vh;
-  margin-left: -120px;
 }
 
 .cards:hover {
@@ -90,28 +89,30 @@ body {
 .playersWinBoard .cards {
   position: absolute;
 }
-.playersWinBoard .cards:first-child {
-  z-index: 1000;
-  background-color: aliceblue;
-  color: wheat;
-}
-.Board .cards:nth-child(1) {
-  margin-right: -60px;
-  z-index: 1;
-}
-.Board .cards:nth-child(2) {
-  margin-right: -60px;
-  z-index: 2;
-}
-.Board .cards:nth-child(3) {
-  margin-right: -60px;
-  z-index: 3;
-}
+
 .Board .cards:nth-child(n + 4) {
-  margin-right: -60px;
+  margin-left: -45px;
   z-index: 4;
 }
+.Board .cards:nth-child(3) {
+  margin-left: -45px;
+  z-index: 3;
+}
+.Board .cards:nth-child(2) {
+  margin-left: -45px;
+  z-index: 2;
+}
+.Board .cards:nth-child(1) {
+  margin-left: -45px;
+  z-index: 1;
+}
 .score-Board {
+  width: 50px;
+  font-size: larger;
+  font-weight: bold;
+  color: white;
+}
+.player2-score-Board {
   width: 50px;
   font-size: larger;
   font-weight: bold;

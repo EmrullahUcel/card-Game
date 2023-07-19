@@ -4,7 +4,9 @@ import Board from "./components/Board";
 import React, { useState, useEffect } from "react";
 import shuffledCards from "./components/Cards/ShuffledCards";
 import "./style/App.css";
-const startDeck = [...shuffledCards];
+import "./style/phone.css";
+
+const startDeck = [...shuffledCards]; // başlangıç destesini burda tutuyoruz
 
 function App() {
   const [deck, setDeck] = useState(shuffledCards); // Karıştırılmış desteyi tutan state
@@ -63,13 +65,6 @@ function App() {
       window.location.reload();
     }
   };
-  useEffect(() => {
-    isOver();
-    lastCard();
-    if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
-      randomCards(); // Oyuncuların elinde kart kalmadığında kartları tekrar dağıtır
-    }
-  }, [turn]);
 
   const lastCard = () => {
     // bu if bloğunda kazanma koşullarını belirliyoruz
@@ -132,7 +127,7 @@ function App() {
         );
         setTakeCard(findCard);
         setTurn(true);
-      }, 500);
+      }, 350);
     } else {
       setTimeout(() => {
         const randomCardIndex = Math.floor(
@@ -148,11 +143,25 @@ function App() {
         );
         setTakeCard(randomPlayCard);
         setTurn(true);
-      }, 500);
+      }, 350);
     }
   };
+  useEffect(() => {}, [turn]);
 
   useEffect(() => {
+    console.log(
+      `"player 1 in kazandıkları :",${player1winCards.length},
+      "player 2 in kazandıkları :",${player2winCards.length},
+      "yerdeki kartlar :",${boardHand.length},
+      "player 1 in eli :",${randomplayer1Hand.length},
+      "player 2 nin eli :",${randomplayer2Hand.length},
+      "destedeki kartlar :",${deck.length}`
+    );
+    isOver();
+    lastCard();
+    if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
+      randomCards(); // Oyuncuların elinde kart kalmadığında kartları tekrar dağıtır
+    }
     if (!turn) {
       player2CardHandle();
     }
@@ -166,7 +175,7 @@ function App() {
         turn={turn}
         player2winCards={player2winCards}
       />
-      <p>{count}.Tur</p>
+
       {/* <button onClick={restartGame}>Baştan Başla</button> */}
       <Board
         boardHand={boardHand}

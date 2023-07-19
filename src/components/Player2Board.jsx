@@ -2,7 +2,6 @@ import "../style/player2.css";
 
 const Player2Board = ({
   randomplayer2Hand,
-  turn,
   player2winCards,
   onCardSelected,
 }) => {
@@ -23,36 +22,32 @@ const Player2Board = ({
 
   return (
     <div className="Player2Board">
-      <div className="score-Board">
-        <h5>Toplam kazanılan kart</h5>
-        {player2winCards.length}
+      <div className="player2-score-Board">
+        <h6>
+          Toplam kazanılan kart :
+          <br />
+          {player2winCards.length}
+        </h6>
       </div>
-      <div className="player2Hand">
+      <div className="player2Hand back">
         {randomplayer2Hand.map((card) => {
           return (
             <button
               style={{ color: card.color }}
               key={card.id}
               className="cards"
-              onClick={() => handleCardSelected(card)}
-              disabled={turn ? true : false}
             >
-              <div className="content">
-                <div className="card-front">
-                  <span className="card-title-top">{card.value}</span>
-                  <span className="card-icon">
-                    <div>{card.icon}</div>
-                  </span>
-                  <span className="card-title-bottom">{card.value}</span>
-                </div>
-                <div className="card-back"></div>
-              </div>
+              <span className="card-title-top">{card.value}</span>
+              <span className="card-icon">
+                <div>{card.icon}</div>
+              </span>
+              <span className="card-title-bottom">{card.value}</span>
             </button>
           );
         })}
       </div>
       {
-        <div className="playersWinBoard">
+        <div className="playersWinBoard player2winBoard">
           {player2winCards.map((card) => {
             return (
               <div

@@ -1,12 +1,10 @@
 const Board = ({ boardHand }) => {
-  console.log(boardHand); // card nesnelerini konsola yazdır
   return (
     <div className="Board">
       {boardHand.map((card) => {
         const cardClassName = `cards ${card.color.toLowerCase()}Shadow`;
         return (
           <div
-            id="flipcard"
             style={{ color: card.color }}
             key={card.title}
             className={cardClassName}
