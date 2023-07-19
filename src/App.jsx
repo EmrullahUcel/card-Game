@@ -3,6 +3,7 @@ import Player1Board from "./components/Player1Board";
 import Board from "./components/Board";
 import React, { useState, useEffect } from "react";
 import shuffledCards from "./components/Cards/ShuffledCards";
+import saplak from "./soundEffect/saplak.mp3";
 import "./style/App.css";
 import "./style/phone.css";
 
@@ -42,6 +43,9 @@ function App() {
   // const restartGame = () => {
   //   window.location.reload();
   // };
+  const song = () => {
+    new Audio(saplak).play();
+  };
 
   const randomCards = () => {
     const player1hand = deck.splice(0, 4);
@@ -75,25 +79,26 @@ function App() {
         takeCard?.value === boardHand[boardHand.length - 2]?.value) ||
       (boardHand.length > 1 && boardHand[boardHand.length - 1]?.value === "J")
       // oyuncudan gelen kartla yerdeki kartların sonundakiyle eşleşip eşleşmediğini kontrol ediyoruz
-    ) {
-      if (
-        boardHand.length > 1 &&
-        boardHand.length < 3 &&
-        takeCard?.value === boardHand[0]?.value
-        //eğer yerde hiç kart yoksa oyuncudan gelen kartla yerdeki son kartın eşleşip eşleşmediğini kontrol ediyoruz
-        //--bu sayede pişti durumuna bakıyoruz
-      ) {
-        alert("pişti");
-        if (!turn) {
-          const removedCards = boardHand.splice(0, boardHand.length);
-          setPlayer1WinCards([...player1winCards, ...removedCards]);
-          setDeck([...deck]);
-        } else {
-          const removedCards = boardHand.splice(0, boardHand.length);
-          setPlayer2WinCards([...player2winCards, ...removedCards]);
-          setDeck([...deck]);
-        }
+    )
+      if (!turn) {
+        const removedCards = boardHand.splice(0, boardHand.length);
+        setPlayer1WinCards([...player1winCards, ...removedCards]);
+        setDeck([...deck]);
+      } else {
+        const removedCards = boardHand.splice(0, boardHand.length);
+        setPlayer2WinCards([...player2winCards, ...removedCards]);
+        setDeck([...deck]);
       }
+  };
+  const pisti = () => {
+    if (
+      boardHand.length > 1 &&
+      boardHand.length < 3 &&
+      takeCard?.value === boardHand[0]?.value
+      //eğer yerde hiç kart yoksa oyuncudan gelen kartla yerdeki son kartın eşleşip eşleşmediğini kontrol ediyoruz
+      //--bu sayede pişti durumuna bakıyoruz
+    ) {
+      song();
       if (!turn) {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer1WinCards([...player1winCards, ...removedCards]);
@@ -147,17 +152,8 @@ function App() {
       }, 750);
     }
   };
-  useEffect(() => {}, [turn]);
-
   useEffect(() => {
-    console.log(
-      `"player 1 in kazandıkları :",${player1winCards.length},
-      "player 2 in kazandıkları :",${player2winCards.length},
-      "yerdeki kartlar :",${boardHand.length},
-      "player 1 in eli :",${randomplayer1Hand.length},
-      "player 2 nin eli :",${randomplayer2Hand.length},
-      "destedeki kartlar :",${deck.length}`
-    );
+    pisti();
     isOver();
     lastCard();
     if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
@@ -183,7 +179,6 @@ function App() {
         player2winCards={player2winCards}
       />
 
-      {/* <button onClick={restartGame}>Baştan Başla</button> */}
       <Board
         boardHand={boardHand}
         setBoardHand={setBoardHand}
