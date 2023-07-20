@@ -48,14 +48,14 @@ suits.forEach((suit) => {
       amount = 2;
     }
     CardsData.push({
+      amount: amount,
       id: CardsData.length + 1,
       title: `${suit.name}${i}`,
       value: i === 1 ? "A" : values[i - 1],
       color: suit.color,
       icon: suit.icon,
-      amount: amount,
     });
   }
 });
-console.log(CardsData);
+
 export default CardsData;
