@@ -20,7 +20,8 @@ function App() {
   const [takeCard, setTakeCard] = useState([]); // Oyunculardan gelen kartları tutan state
   const [player1winCards, setPlayer1WinCards] = useState([]); // 1. oyuncunun kazandığı kartları tutan state
   const [player2winCards, setPlayer2WinCards] = useState([]); // 2. oyuncunun kazandığı kartları tutan state
-  const [count, setCount] = useState(0);
+  const [p1Points, setP1Points] = useState(0);
+  const [p2Points, setP2Points] = useState(0);
 
   const firstCards = () => {
     const randomCard = deck.splice(0, 4);
@@ -31,20 +32,6 @@ function App() {
     firstCards(); // İlk kartları dağıtma işlemini gerçekleştirir
   }, []);
 
-  // const restartGame = () => {
-  //   setDeck([]);
-  //   setDeck([...startDeck]);
-  //   setBoardHand([]);
-  //   setRandomplayer1Hand([]);
-  //   setRandomplayer2Hand([]);
-  //   setTurn(true);
-  //   setTakeCard([]);
-  //   setPlayer1WinCards([]);
-  //   setPlayer2WinCards([]);
-  // };
-  // const restartGame = () => {
-  //   window.location.reload();
-  // };
   const song = () => {
     new Audio(saplak).play();
   };
@@ -62,7 +49,6 @@ function App() {
     const player2hand = deck.splice(0, 4);
     setRandomplayer2Hand(player2hand); // Desteden 2. oyuncuya 4 kart verir
     setDeck([...deck]);
-    setCount(count + 1);
   };
   const isOver = () => {
     if (
@@ -71,7 +57,7 @@ function App() {
       randomplayer2Hand.length < 1
     ) {
       alert("oyun bitti");
-      player1winCards.length > player2winCards.length
+      p1Points > p2Points
         ? alert("Sen kazandın")
         : alert(
             "Yazıklar olsun 30 satır koddan yazılmış bir BOT'a yenildin :D"
@@ -114,11 +100,13 @@ function App() {
         setPlayer1WinCards([...player1winCards, ...removedCards]);
         setDeck([...deck]);
         takingCards();
+        setP1Points(p1Points + 10);
       } else {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer2WinCards([...player2winCards, ...removedCards]);
         setDeck([...deck]);
         takingCards();
+        setP2Points(p2Points + 10);
       }
     }
   };
@@ -167,7 +155,21 @@ function App() {
       }, 750);
     }
   };
+  const calcP1points = () => {
+    player1winCards.forEach((card) => {
+      setP1Points(p1Points + card.amount);
+    });
+    console.log(player1winCards);
+  };
+  const calcP2points = () => {
+    player2winCards.forEach((card) => {
+      setP2Points(p2Points + card.amount);
+    });
+    console.log(player2winCards);
+  };
   useEffect(() => {
+    calcP1points();
+    calcP2points();
     pisti();
     isOver();
     lastCard();
@@ -182,10 +184,8 @@ function App() {
   return (
     <div className="App">
       <div className="score-board">
-        <h4 className="score-board-table">Puanın : {player1winCards.length}</h4>
-        <h4 className="score-board-table">
-          Rakibin Puanı :{player2winCards.length}{" "}
-        </h4>
+        <h4 className="score-board-table">Puanın : {p1Points}</h4>
+        <h4 className="score-board-table">Rakibin Puanı :{p2Points}</h4>
       </div>
       <Player2Board
         onCardSelected={(card) => player2CardHandle(card)}

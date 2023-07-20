@@ -1,17 +1,17 @@
 import CardsData from "./CardsData";
 
-function shuffle(array) {
-  const shuffledArray = [...array]; // Orjinal array'in bir kopyasını oluşturuyoruz
+function shuffle(deck) {
+  const shuffledDeck = [...deck]; // Orjinal array'in bir kopyasını oluşturuyoruz
 
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
+  for (let i = shuffledDeck.length - 1; i > 0; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[randomIndex]] = [
-      shuffledArray[randomIndex],
-      shuffledArray[i],
+    [shuffledDeck[i], shuffledDeck[randomIndex]] = [
+      shuffledDeck[randomIndex],
+      shuffledDeck[i],
     ];
   }
 
-  return shuffledArray;
+  return shuffledDeck;
 }
 
 const shuffledCards = shuffle(CardsData);

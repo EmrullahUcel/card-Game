@@ -5,365 +5,57 @@ import {
   BsSuitClub,
 } from "react-icons/bs";
 
-const CardsData = [
-  {
-    id: 1,
-    title: "heart1",
-    value: "1",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 2,
-    title: "heart2",
-    value: "2",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 3,
-    title: "heart3",
-    value: "3",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 4,
-    title: "heart4",
-    value: "4",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 5,
-    title: "heart5",
-    value: "5",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 6,
-    title: "heart6",
-    value: "6",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 7,
-    title: "heart7",
-    value: "7",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 8,
-    title: "heart8",
-    value: "8",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 9,
-    title: "heart9",
-    value: "9",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 10,
-    title: "heart10",
-    value: "10",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 11,
-    title: "heart11",
-    value: "J",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  { id: 12, title: "heart12", value: "Q", color: "red", icon: <BsSuitHeart /> },
-  {
-    id: 13,
-    title: "heart13",
-    value: "K",
-    color: "red",
-    icon: <BsSuitHeart />,
-  },
-  {
-    id: 14,
-    title: "spades1",
-    value: "1",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 15,
-    title: "spades2",
-    value: "2",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 16,
-    title: "spades3",
-    value: "3",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 17,
-    title: "spades4",
-    value: "4",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 18,
-    title: "spades5",
-    value: "5",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 19,
-    title: "spades6",
-    value: "6",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 20,
-    title: "spades7",
-    value: "7",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 21,
-    title: "spades8",
-    value: "8",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 22,
-    title: "spades9",
-    value: "9",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 23,
-    title: "spades10",
-    value: "10",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 24,
-    title: "spades11",
-    value: "J",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 25,
-    title: "spades12",
-    value: "Q",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 26,
-    title: "spades13",
-    value: "K",
-    color: "deepskyblue",
-    icon: <BsSuitSpade />,
-  },
-  {
-    id: 27,
-    title: "diamond1",
-    value: "1",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 28,
-    title: "diamond2",
-    value: "2",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 29,
-    title: "diamond3",
-    value: "3",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 30,
-    title: "diamond4",
-    value: "4",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 31,
-    title: "diamond5",
-    value: "5",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 32,
-    title: "diamond6",
-    value: "6",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 33,
-    title: "diamond7",
-    value: "7",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 34,
-    title: "diamond8",
-    value: "8",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 35,
-    title: "diamond9",
-    value: "9",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 36,
-    title: "diamond10",
-    value: "10",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 37,
-    title: "diamond11",
-    value: "J",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 38,
-    title: "diamond12",
-    value: "Q",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 39,
-    title: "diamond13",
-    value: "K",
-    color: "red",
-    icon: <BsSuitDiamond />,
-  },
-  {
-    id: 40,
-    title: "club1",
-    value: "1",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 41,
-    title: "club2",
-    value: "2",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 42,
-    title: "club3",
-    value: "3",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 43,
-    title: "club4",
-    value: "4",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 44,
-    title: "club5",
-    value: "5",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 45,
-    title: "club6",
-    value: "6",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 46,
-    title: "club7",
-    value: "7",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 47,
-    title: "club8",
-    value: "8",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 48,
-    title: "club9",
-    value: "9",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 49,
-    title: "club10",
-    value: "10",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 50,
-    title: "club11",
-    value: "J",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 51,
-    title: "club12",
-    value: "Q",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
-  {
-    id: 52,
-    title: "club13",
-    value: "K",
-    color: "deepskyblue",
-    icon: <BsSuitClub />,
-  },
+const suits = [
+  { name: "heart", color: "red", icon: <BsSuitHeart /> },
+  { name: "spades", color: "deepskyblue", icon: <BsSuitSpade /> },
+  { name: "diamond", color: "red", icon: <BsSuitDiamond /> },
+  { name: "club", color: "deepskyblue", icon: <BsSuitClub /> },
 ];
 
+const CardsData = [];
+const values = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "J",
+  "Q",
+  "K",
+];
+
+suits.forEach((suit) => {
+  for (let i = 1; i <= 13; i++) {
+    let amount = 0;
+    if (
+      (suit.name === "diamond" && values[i - 1] === "10") ||
+      (suit.name === "heart" && values[i - 1] === "10")
+    ) {
+      amount = 3;
+    }
+    if (values[i - 1] === "1" || values[i - 1] === "J") {
+      amount = 4;
+    }
+    if (
+      (suit.name === "club" && values[i - 1] === "2") ||
+      (suit.name === "heart" && values[i - 1] === "2")
+    ) {
+      amount = 2;
+    }
+    CardsData.push({
+      id: CardsData.length + 1,
+      title: `${suit.name}${i}`,
+      value: i === 1 ? "A" : values[i - 1],
+      color: suit.color,
+      icon: suit.icon,
+      amount: amount,
+    });
+  }
+});
+console.log(CardsData);
 export default CardsData;
