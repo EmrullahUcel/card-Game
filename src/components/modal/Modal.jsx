@@ -1,50 +1,58 @@
 import { useState } from "react";
-import "/src/style/App.css";
+import Modal from "react-modal";
 
-const Modal = ({ open, modal, setModal, isOver, p1Points, p2Points }) => {
-  let message = "";
-  const handleModal = () => {
-    open(handleModal);
-  };
-  const closeModal = () => {
-    setModal(false);
-  };
-  const restartGame = () => {
-    window.location.reload();
-  };
-  const modalMessage = () => {
-    isOver(modalMessage);
-    if (p1Points > p2Points) {
-      return (
-        <p>
-          {message`Kazandın : ${p1Points} puanın var ! Rakibin : ${p2Points} puanı var `}
-        </p>
-      );
-    } else {
-      return (
-        <p>
-          {message`Kaybettin : ${p1Points} puanın Rakibin : ${p2Points} puanı var`}
-        </p>
-      );
-    }
-  };
-  console.log(message);
-  return (
-    <>
-      {modal && (
-        <div className="modal">
-          <div className="overlay"></div>
-          <div className="modal-content">
-            <div>{message}</div>
-            <button onClick={restartGame}>Baştan başla</button>
-            <button className="close-modal" onClick={closeModal}>
-              X
-            </button>
-          </div>
-        </div>
-      )}
-    </>
-  );
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
 };
 
-export default Modal;
+Modal.setAppElement("#root");
+
+function PopUp() {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  return (
+    <div>
+      <button onClick={openModal}>Open Modal</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </Modal>
+    </div>
+  );
+}
+export default PopUp;

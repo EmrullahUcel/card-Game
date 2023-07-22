@@ -43,7 +43,7 @@
   margin-left: -60px;
   border: 1px solid white;
 }
-.player2Hand .cards {
+/* .player2Hand .cards {
   background-color: black;
 }
 .player2Hand .card-title-bottom,
@@ -55,7 +55,7 @@
   font-size: larger;
   font-weight: bold;
   color: white;
-}
+} */
 .player2winBoard .cards {
   position: absolute;
   margin-top: -30px;

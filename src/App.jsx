@@ -6,9 +6,9 @@ import shuffledCards from "./components/Cards/ShuffledCards";
 import saplak from "./soundEffect/saplak.mp3";
 import cardSound from "./soundEffect/cardSound.mp3";
 import takingCard from "./soundEffect/takingCards.mp3";
-import Modal from "./components/modal/modal";
 import "./style/App.css";
 import "./style/phone.css";
+import PopUp from "./components/modal/modal";
 
 const startDeck = [...shuffledCards]; // başlangıç destesini burda tutuyoruz
 
@@ -23,7 +23,7 @@ function App() {
   const [player2winCards, setPlayer2WinCards] = useState([]); // 2. oyuncunun kazandığı kartları tutan state
   const [p1Points, setP1Points] = useState(0);
   const [p2Points, setP2Points] = useState(0);
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   const [p1Pisti, setp1Pisti] = useState(0);
   const [p2Pisti, setp2Pisti] = useState(0);
 
@@ -57,8 +57,8 @@ function App() {
   const isOver = () => {
     alert("oyun bitti");
     p1Points > p2Points
-      ? alert("Sen kazandın")
-      : alert("Yazıklar olsun 30 satır koddan yazılmış bir BOT'a yenildin :D");
+      ? alert(`Kazandın puanın : ${p1Points} Rakibin : ${p2Points} `)
+      : alert(`Kaybettin puanın : ${p1Points} Rakibin : ${p2Points} `);
     window.location.reload();
   };
 
@@ -116,12 +116,14 @@ function App() {
     setTakeCard(card);
     playCard();
   };
+  useEffect(() => {}, [turn]);
 
   const player2CardHandle = (card) => {
     const boardLastCard = boardHand[boardHand.length - 1];
     const findCard = randomplayer2Hand.find(
       (c) => c?.value === boardLastCard?.value
     );
+    const yourJoker = randomplayer2Hand.find((c) => c.value === "J");
     if (findCard) {
       setTimeout(() => {
         setBoardHand((prevBoardHand) => [...prevBoardHand, findCard]);
@@ -129,6 +131,19 @@ function App() {
           prevRandomplayer2Hand.filter((c) => c?.title !== findCard?.title)
         );
         setTakeCard(findCard);
+        setTurn(true);
+        playCard();
+      }, 750);
+    } else if (yourJoker && boardHand.length > 0 && !findCard) {
+      setTimeout(() => {
+        setBoardHand((prevBoardHand) => [...prevBoardHand, yourJoker]);
+        setRandomplayer2Hand((prevRandomplayer2Hand) =>
+          prevRandomplayer2Hand.filter((c) => c.title !== yourJoker.title)
+        );
+        const removedCards = boardHand.splice(0, boardHand.length);
+        setPlayer2WinCards([...player2winCards, ...removedCards, yourJoker]);
+        setBoardHand([]);
+        takingCards();
         setTurn(true);
         playCard();
       }, 750);
@@ -157,7 +172,6 @@ function App() {
       total = card.amount + total;
     }
     setP1Points(total + p1Pisti);
-    console.log(player1winCards);
   };
   const calcP2Points = () => {
     let total2 = 0;
@@ -165,18 +179,14 @@ function App() {
       total2 = card.amount + total2;
     }
     setP2Points(total2 + p2Pisti);
-    console.log(player2winCards);
   };
-  // const openModal = () => {
-  //   setModal(!modal);
-  // };
+
   useEffect(() => {
     if (
       deck.length < 1 &&
       randomplayer1Hand.length < 1 &&
       randomplayer2Hand.length < 1
     ) {
-      // openModal();
       isOver();
     }
     pisti();
@@ -193,16 +203,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* {modal && (
-        <Modal
-          p1Points={p1Points}
-          p2Points={p2Points}
-          isOver={isOver}
-          setModal={setModal}
-          modal={modal}
-          open={openModal}
-        />
-      )} */}
       <div className="score-board">
         <h4 className="score-board-table">Puanın : {p1Points}</h4>
         <h4 className="score-board-table">Rakibin Puanı :{p2Points}</h4>
@@ -214,6 +214,7 @@ function App() {
         player2winCards={player2winCards}
       />
 
+      {/* <PopUp /> */}
       <Board
         boardHand={boardHand}
         setBoardHand={setBoardHand}
