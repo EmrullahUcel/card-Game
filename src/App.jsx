@@ -8,7 +8,6 @@ import cardSound from "./soundEffect/cardSound.mp3";
 import takingCard from "./soundEffect/takingCards.mp3";
 import "./style/App.css";
 import "./style/phone.css";
-import PopUp from "./components/modal/modal";
 
 const startDeck = [...shuffledCards]; // başlangıç destesini burda tutuyoruz
 
