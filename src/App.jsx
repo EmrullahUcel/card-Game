@@ -139,9 +139,7 @@ function App() {
         setRandomplayer2Hand((prevRandomplayer2Hand) =>
           prevRandomplayer2Hand.filter((c) => c.title !== yourJoker.title)
         );
-        const removedCards = boardHand.splice(0, boardHand.length);
-        setPlayer2WinCards([...player2winCards, ...removedCards, yourJoker]);
-        setBoardHand([]);
+        setTakeCard(yourJoker);
         takingCards();
         setTurn(true);
         playCard();
