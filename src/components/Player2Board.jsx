@@ -1,25 +1,6 @@
 import "../style/player2.css";
 
-const Player2Board = ({
-  randomplayer2Hand,
-  player2winCards,
-  onCardSelected,
-}) => {
-  const handleCardSelected = (card) => {
-    if (onCardSelected) {
-      onCardSelected(card);
-    }
-  };
-
-  // const playedCardHandle = (card) => {
-  //   setBoardHand((prevState) => [...prevState, card]);
-  //   setRandomplayer2Hand((prevHand) =>
-  //     prevHand.filter((c) => c.title !== card.title)
-  //   );
-  //   setTurn(true);
-  //   setTakeCard(card);
-  // };
-
+const Player2Board = ({ randomplayer2Hand, player2winCards }) => {
   return (
     <div className="Player2Board">
       <div className="player2-score-Board"></div>

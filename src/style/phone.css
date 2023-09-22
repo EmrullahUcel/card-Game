@@ -71,6 +71,11 @@
     margin-left: -40px;
     border: 1px solid white;
   }
+  .newGame {
+    width: 80px;
+    font-size: 10px;
+    top: 60px;
+  }
 }
 @media screen and (max-width: 500px) {
   .cards {
@@ -161,5 +166,8 @@
   }
   .player1WinBoard .cards {
     margin-left: -5px;
+  }
+  .newGame{
+    height: 40px;
   }
 }

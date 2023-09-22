@@ -128,11 +128,12 @@ body {
   color: green;
   position: absolute;
   z-index: 9999;
-  top: 20px;
+  top: 60px;
   left: 20px;
   height: 50px;
   border-radius: 20%;
   width: 130px;
+  font-weight: bolder;
 }
 .newGame:hover {
   background-color: red;

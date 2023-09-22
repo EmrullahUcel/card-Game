@@ -111,7 +111,7 @@ function App() {
         setTurn(true);
         playCard();
       }, 750);
-    } else if (yourJoker && boardHand.length > 0 && !findCard) {
+    } else if (yourJoker && boardHand.length > 1 && !findCard) {
       setTimeout(() => {
         setBoardHand((prevBoardHand) => [...prevBoardHand, yourJoker]);
         setRandomplayer2Hand((prevRandomplayer2Hand) =>
@@ -157,18 +157,21 @@ function App() {
   };
   const isOver = () => {
     if (p1Points > p2Points) {
-      console.log("p1 kazandı");
-      const lastCardsP1 = player1winCards.splice(0, player1winCards.length);
-      const lastCardsP2 = player2winCards.splice(0, player2winCards.length);
-      const lastCardsBoard = boardHand.splice(0, boardHand.length);
-      setDeck([...lastCardsP1, ...lastCardsP2, ...lastCardsBoard]);
+      alert("SEN KAZANDIN !");
     } else {
-      console.log("p2 kazandı");
-      const lastCardsP1 = player1winCards.splice(0, player1winCards.length);
-      const lastCardsP2 = player2winCards.splice(0, player2winCards.length);
-      const lastCardsBoard = boardHand.splice(0, boardHand.length);
-      setDeck([...lastCardsP1, ...lastCardsP2, ...lastCardsBoard]);
+      alert("RAKİBİN KAZANDI !");
     }
+
+    // Oyun sonunda puanları sıfırlıyoruz ve kartları tekrar desteye koyuyoruz
+    setP1Points(0);
+    setP2Points(0);
+    setp1Pisti(0);
+    setp2Pisti(0);
+
+    const lastCardsP1 = player1winCards.splice(0, player1winCards.length);
+    const lastCardsP2 = player2winCards.splice(0, player2winCards.length);
+    const lastCardsBoard = boardHand.splice(0, boardHand.length);
+    setDeck([...deck, ...lastCardsP1, ...lastCardsP2, ...lastCardsBoard]);
   };
 
   useEffect(() => {
@@ -231,7 +234,9 @@ function App() {
         turn={turn}
         player2winCards={player2winCards}
       />
-      <button className="newGame" onClick={newGame}>Yeniden Başlat</button>
+      <button className="newGame" onClick={newGame}>
+        Yeniden Başlat
+      </button>
       <Board boardHand={boardHand} setBoardHand={setBoardHand} />
       <Player1Board
         onCardSelected={(card) => player1CardHandle(card)}
