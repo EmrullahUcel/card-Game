@@ -2,13 +2,13 @@ import Player2Board from "./components/Player2Board";
 import Player1Board from "./components/Player1Board";
 import Board from "./components/Board";
 import React, { useState, useEffect } from "react";
-import CardsData from "./components/Cards/CardsData";
-import { song, playCard, takingCards } from "./soundEffect/sounds";
+import shuffledCards from "./components/Cards/ShuffledCards";
+import { whip, playCard, takingCards, opponent } from "./soundEffect/sounds";
 import "./style/App.css";
 import "./style/phone.css";
 
 function App() {
-  const [deck, setDeck] = useState(CardsData); // Karıştırılmış desteyi tutan state
+  const [deck, setDeck] = useState(shuffledCards); // Karıştırılmış desteyi tutan state
   const [boardHand, setBoardHand] = useState([]); // Yerdeki kartları tutan ve güncelleyen state
   const [randomplayer1Hand, setRandomplayer1Hand] = useState([]); // 1. oyuncuya dağıtılan kartları tutan state
   const [randomplayer2Hand, setRandomplayer2Hand] = useState([]); // 2. oyuncuya dağıtılan kartları tutan state
@@ -22,23 +22,18 @@ function App() {
   const [p2Pisti, setp2Pisti] = useState(0);
 
   const dealTheCards = () => {
-    // Kartları karıştırıyoruz
-    const shuffledDeck = CardsData.sort(() => Math.random() - 0.5);
-
-    if (shuffledDeck.length === 52) {
-      const boardCards = shuffledDeck.splice(0, 4);
-      const p1 = shuffledDeck.splice(0, 4);
-      const p2 = shuffledDeck.splice(0, 4);
-      const leftedCards = [...shuffledDeck];
-
+    if (deck.length === 52) {
+      const boardCards = deck.splice(0, 4);
+      const p1 = deck.splice(0, 4);
+      const p2 = deck.splice(0, 4);
+      const leftedCards = [...deck];
       setDeck(leftedCards);
       setBoardHand(boardCards);
       setRandomplayer1Hand(p1);
       setRandomplayer2Hand(p2);
     } else if (randomplayer1Hand.length < 1 && randomplayer2Hand.length < 1) {
-      const p1 = shuffledDeck.splice(0, 4);
-      const p2 = shuffledDeck.splice(0, 4);
-
+      const p1 = deck.splice(0, 4);
+      const p2 = deck.splice(0, 4);
       setRandomplayer1Hand(p1);
       setRandomplayer2Hand(p2);
     }
@@ -73,18 +68,17 @@ function App() {
       //eğer yerde hiç kart yoksa oyuncudan gelen kartla yerdeki son kartın eşleşip eşleşmediğini kontrol ediyoruz
       //--bu sayede pişti durumuna bakıyoruz
     ) {
-      song();
       if (!turn) {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer1WinCards([...player1winCards, ...removedCards]);
         setDeck([...deck]);
-        takingCards();
+        whip();
         setp1Pisti(p1Pisti + 10);
       } else {
         const removedCards = boardHand.splice(0, boardHand.length);
         setPlayer2WinCards([...player2winCards, ...removedCards]);
         setDeck([...deck]);
-        takingCards();
+        opponent();
         setp2Pisti(p2Pisti + 10);
       }
     }
@@ -162,8 +156,10 @@ function App() {
   };
   const isOver = () => {
     if (p1Points > p2Points) {
+      whip();
       alert("SEN KAZANDIN !");
     } else {
+      opponent();
       alert("RAKİBİN KAZANDI !");
     }
 

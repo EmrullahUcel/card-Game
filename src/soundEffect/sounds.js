@@ -3,7 +3,7 @@ import cardSound from "./sounds/cardSound.mp3";
 import takingCard from "./sounds/takingCards.mp3";
 import opponentWin from "./sounds/opponentWin.mp3";
 
-const song = () => {
+const whip = () => {
   new Audio(saplak).play();
 };
 const playCard = () => {
@@ -13,7 +13,7 @@ const takingCards = () => {
   new Audio(takingCard).play();
 };
 const opponent = () => {
-  new Audio(opponentWin).play;
+  new Audio(opponentWin).play();
 };
 
-export { takingCards, playCard, song, opponent };
+export { takingCards, playCard, whip, opponent };
